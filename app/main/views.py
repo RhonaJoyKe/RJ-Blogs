@@ -31,15 +31,14 @@ def update_profile(uname):
         return redirect(url_for('.profile',uname=user.username))
     return render_template('profile/update.html',form =form)
 @main.route('/createblog', methods=['GET', 'POST'])
-# @login_required
+@login_required
 def new_blog():
     blog_form = FormBlog()
     if blog_form.validate_on_submit():
         title = blog_form.title.data
-        category = blog_form.category.data
         content = blog_form.content.data
-        new_blog= Blogs(title=title, category=category, content=content)
-        new_blog.save_blogs
+        new_blog= Blogs(title=title, content=content)
+        new_blog.save_blogs()
         
         return redirect(url_for('main.index'))
     return render_template('blog.html', blog_form = blog_form)
@@ -54,7 +53,7 @@ def update_pic(uname):
         user.profile_pic_path = path
         db.session.commit()
     return redirect(url_for('main.profile',uname=uname))
-@main.route('/comments/<pitch_id>', methods=['GET', 'POST'])
+@main.route('/comments/<blog_id>', methods=['GET', 'POST'])
 @login_required
 def comments(blog_id):
     comments = Comment.query.filter_by(blog_id=blog_id).all()

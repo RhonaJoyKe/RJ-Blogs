@@ -20,7 +20,7 @@
 
 <div class="container"  >
         <div class="row">
-          {% for blog in blogss %}
+          {% for blog in blogs %}
           <div class="col-md-4 ">
             <div class="panel panel-default text-center " id="display1">
                 <div class="panel-heading">
@@ -30,7 +30,7 @@
                     <p>{{ blog.content }}</p>
                     <p class="panel-text"><strong>Created on: <span class="badge rounded-pill bg-warning text-dark">{{
                       blog.date_created  }}</span></strong> <br>
-                      <a href="{{ url_for('main.comments', blog_id = pitch_id)}}"><i class="fa fa-comments" aria-hidden="true"></i>comment</a>
+                      <a href="{{ url_for('main.comments', blog_id = blog_id)}}"><i class="fa fa-comments" aria-hidden="true"></i>comment</a>
                     </p>
                       
                 </div>
