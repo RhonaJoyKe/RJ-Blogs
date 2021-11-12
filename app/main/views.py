@@ -1,9 +1,9 @@
 from flask import render_template,request, redirect, url_for, abort, flash
 from . import main
 from flask_login import login_required, current_user
-from ..models import Likes, User,Pitches,Comment,Dislikes
+from ..models import  User
 from .. import db, photos
-from .forms import UpdateProfile,FormPitch,CommentForm
+from .forms import UpdateProfile
 @main.route('/')
 def index():
     pitches = Pitches.query.order_by(Pitches.date_created).all()

@@ -36,3 +36,46 @@ class User(UserMixin, db.Model):
         return User.query.get(int(user_id))
     def __repr__(self):
         return f'User {self.username}'
+
+    class Blogs(db.Model):  
+     __tablename__ = 'blogs'
+    blog_id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(255))
+    content = db.Column(db.String(255))
+    author = db.Column(db.String(255))
+    date_created=db.Column(db.DateTime, default=datetime.utcnow)
+    category = db.Column(db.String(255), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    # comments = db.relationship('Comment', backref='pitch', lazy = 'dynamic')
+   
+
+
+    # save category
+
+    def save_blogs(self):
+        db.session.add(self)
+        db.session.commit()
+    def repr(self):
+        return f'Post {self.title}'
+class Comment(db.Model):
+    __tablename__='comments'
+    id = db.Column(db.Integer, primary_key=True)
+    content = db.Column(db.String(255))
+    date_created=db.Column(db.DateTime,nullable=False,default=datetime.utcnow)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    blog_id = db.Column(db.Integer, db.ForeignKey('blogs.blog_id'))
+
+    
+    def save_comment(self):
+        db.session.add(self)
+        db.session.commit()
+
+    def __repr__(self):
+        return f'Comment {self.name}'
+
+class PhotoProfile(db.Model):
+    __tablename__ = 'profile_photos'
+
+    id = db.Column(db.Integer,primary_key = True)
+    pic_path = db.Column(db.String())
+    user_id = db.Column(db.Integer,db.ForeignKey("user.id"))
