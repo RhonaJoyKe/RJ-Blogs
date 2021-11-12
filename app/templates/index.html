@@ -1,0 +1,52 @@
+{% extends 'base.html'%}
+
+{% block head %}
+<!-- css link -->
+{% block styles %}
+<!--bootstrap link-->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+{{ super() }}
+<link rel="stylesheet" href="{{ url_for('static', filename='static/css/index.css') }}">
+{% endblock %}
+<title>{{ title }}</title>
+{% endblock %}
+{% block content %}
+<div class="jumbotron jumbotron-fluid bg-warning">
+  <div class="container">
+    <h1 class="display-4">Pitch App</h1>
+    <p class="lead">Pitch, Read, Inspire, Learn & Unlearn</p>
+  </div>
+</div>
+
+<div class="container"  >
+        <div class="row">
+          {% for blog in blogss %}
+          <div class="col-md-4 ">
+            <div class="panel panel-default text-center " id="display1">
+                <div class="panel-heading">
+                    <h4 span style="font-weight: 900;">{{ blog.title}}</h4>
+                </div>
+                <div class="panel-body">
+                    <p>{{ blog.content }}</p>
+                    <p class="panel-text"><strong>Created on: <span class="badge rounded-pill bg-warning text-dark">{{
+                      blog.date_created  }}</span></strong> <br>
+                      <a href="{{ url_for('main.comments', blog_id = pitch_id)}}"><i class="fa fa-comments" aria-hidden="true"></i>comment</a>
+                    </p>
+                      
+                </div>
+            </div>
+        </div> 
+          {% endfor %}
+                        
+        </div>   
+              </div>
+  <div class="container bg-warning mt-5" id ="footer">
+      <div class="container text-center" id="socials">
+          <p><b>rhonajoy8@gmail.com</b></p>
+            <p><b>&copy; 2021</b></p>
+              <p><b>Made with<span class="fa fa-heart" style="color: red;" aria-hidden="true"></span></b></p>
+    </div>
+              
+  </div>
+            
+{% endblock %}

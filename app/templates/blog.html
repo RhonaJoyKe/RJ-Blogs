@@ -1,0 +1,35 @@
+{% extends 'base.html'%}
+{% import 'bootstrap/wtf.html' as wtf%}
+
+{%block styles %}
+{{super()}}
+<link rel="stylesheet" href="{{url_for('static', filename= 'css/index.css')}}">
+{%endblock %}
+{% block content %}
+ <body>
+  <div  class="container">
+    <div class="row">
+      <div class="col-md-12 ">
+      <div class="jumbotron  bg-warning mt-3">
+          <div class="container">
+          <h1 class="display-4">Pitch Form</h1>
+         
+          </div>
+      </div>
+    </div>
+  </div>
+    <div class="card mt-3 bg-info " id="display1">
+        
+      <div class="row">
+      <div class="col-md-3"></div>
+      <div class="col-md-6 ">
+         
+          {{wtf.quick_form(blog_form)}}
+      </div>
+      <div class="col-md-3"></div>
+    </div>
+    </div>
+    
+  </div>
+ </body> 
+ {%endblock%}

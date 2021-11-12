@@ -31,7 +31,7 @@ def update_profile(uname):
         return redirect(url_for('.profile',uname=user.username))
     return render_template('profile/update.html',form =form)
 @main.route('/createblog', methods=['GET', 'POST'])
-@login_required
+# @login_required
 def new_blog():
     blog_form = FormBlog()
     if blog_form.validate_on_submit():
@@ -65,11 +65,11 @@ def comments(blog_id):
     if form.validate_on_submit():
             comment = Comment(
             content=form.content.data,
-            pitch_id=pitch_id,
+            blog_id=blog_id,
             user_id=current_user.id
         )
             db.session.add(comment)
             db.session.commit()
             form.content.data = ''
             flash('Your comment has been posted successfully!')
-    return render_template('comments.html',pitches= pitch, comment=comments, form = form)
+    return render_template('comments.html',blogs= blog, comment=comments, form = form)
