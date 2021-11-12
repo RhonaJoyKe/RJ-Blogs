@@ -1,14 +1,14 @@
 from flask import render_template,request, redirect, url_for, abort, flash
 from . import main
 from flask_login import login_required, current_user
-from ..models import  User
+from ..models import  User,Blogs,Comment
 from .. import db, photos
-from .forms import UpdateProfile
+from .forms import UpdateProfile,CommentForm,FormBlog
 @main.route('/')
 def index():
-    pitches = Pitches.query.order_by(Pitches.date_created).all()
+    blogs = Blogs.query.order_by(Blogs.date_created).all()
     
-    return render_template('index.html',pitches=pitches)
+    return render_template('index.html',blogs=blogs)
 @main.route('/user/<uname>')
 def profile(uname):
     user = User.query.filter_by(username = uname).first()

@@ -37,21 +37,21 @@ class User(UserMixin, db.Model):
     def __repr__(self):
         return f'User {self.username}'
 
-    class Blogs(db.Model):  
-     __tablename__ = 'blog'
+class Blogs(db.Model):  
+    __tablename__ = 'blog'
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(255))
     content = db.Column(db.String(255))
     author = db.Column(db.String(255))
     date_created=db.Column(db.DateTime, default=datetime.utcnow)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
-    comments = db.relationship('Comment', backref='pitch', lazy = 'dynamic')
+    comments = db.relationship('Comment', backref='blog', lazy = 'dynamic')
     def save_blogs(self):
         db.session.add(self)
         db.session.commit()
     def repr(self):
         return f'Post {self.title}'
-        
+
 class Comment(db.Model):
     __tablename__='comments'
     id = db.Column(db.Integer, primary_key=True)
