@@ -16,36 +16,23 @@ class User(UserMixin, db.Model):
     password_hash = db.Column(db.String(255))
     bio = db.Column(db.String(255))
     profile_pic_path = db.Column(db.String())
-
-    # posts = db.relationship('Post', backref='author', lazy='dynamic')
-    
- 
-    # save user
-
+     # save user
     def save_user(self):
         db.session.add(self)
         db.session.commit()
-
-# generate password hash
-
+        # generate password hash
     @property
     def password(self):
         raise AttributeError('You cannot read the password attribute')
-
     @password.setter
     def password(self, password):
         self.password_hash = generate_password_hash(password)
-
     # check password
-
     def verify_password(self, password):
         return check_password_hash(self.password_hash, password)
-
     # login manager
-
     @login_manager.user_loader
     def load_user(user_id):
         return User.query.get(int(user_id))
-
     def __repr__(self):
         return f'User {self.username}'
