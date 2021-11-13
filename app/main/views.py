@@ -63,10 +63,11 @@ def update_blog(blog_id):
         blog.title=form.title.data
         blog.content=form.content.data
         db.session.commit()
-        flash('Your Post has been Updated')
-        return redirect(url_for )
-    form.title.data=blog.title
-    form.content.data=blog.content
+        flash('Your Post has been Updated','Success')
+        return redirect(url_for('blog',blog_id=blog.id) )
+    elif request.method=='GET':
+        form.title.data=blog.title
+        form.content.data=blog.content
     return render_template('blog.html', form = form,title='Update Post')
 
 
