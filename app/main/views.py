@@ -3,12 +3,15 @@ from . import main
 from flask_login import login_required, current_user
 from ..models import  User,Blogs,Comment
 from .. import db, photos
+from ..request import get_quote
+
 from .forms import UpdateProfile,CommentForm,FormBlog
 @main.route('/')
 def index():
     blogs = Blogs.query.order_by(Blogs.date_created).all()
+    quote=get_quote()
     
-    return render_template('index.html',blogs=blogs)
+    return render_template('index.html',blogs=blogs, quote=quote)
 @main.route('/user/<uname>')
 def profile(uname):
     user = User.query.filter_by(username = uname).first()
@@ -41,7 +44,32 @@ def new_blog():
         new_blog.save_blogs()
         
         return redirect(url_for('main.index'))
-    return render_template('blog.html', blog_form = blog_form)
+    return render_template('blog.html', title='New Post',blog_form = blog_form)
+
+@main.route('/blog/<blog_id>', methods=['GET', 'POST'])
+def blog(blog_id):
+    blog=Blogs.query.get_or_404(blog_id)
+    return render_template('blogt.html',title=blog.title,blog=blog)
+
+# updating a blog
+@main.route('/blog/<blog_id>/update',)
+@login_required
+def update_blog(blog_id):
+    blog=Blogs.query.get_or_404(blog_id)
+    if blog.author !=current_user:
+         abort(403)
+    form=FormBlog()
+    if form.validate_on_submit():
+        blog.title=form.title.data
+        blog.content=form.content.data
+        db.session.commit()
+        flash('Your Post has been Updated')
+        return redirect(url_for )
+    form.title.data=blog.title
+    form.content.data=blog.content
+    return render_template('blog.html', form = form,title='Update Post')
+
+
 
 @main.route('/user/<uname>/update/pic',methods= ['POST'])
 @login_required

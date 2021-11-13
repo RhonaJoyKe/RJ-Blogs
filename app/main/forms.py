@@ -12,9 +12,9 @@ class FormBlog(FlaskForm):
     author = StringField('Author : ', validators=[Required()])
     category = RadioField('Blog Category', choices = [('businesspitch', 'Business Pitch'),  ('lyricspitch', ' Lyrics Pitch'), ('advertisementpitch', 'Advertisement Pitch'),('relationshippitch' , 'Relationship Pitch')], validators = [Required()])
     content = TextAreaField('Blog Content', validators=[Required()])
-    submit = SubmitField('Submit')
+    submit = SubmitField('Post')
 
 class CommentForm(FlaskForm):
-    content = TextAreaField('Pitch Content', validators=[Required()])
+    content = TextAreaField('Leave a comment ...', validators=[Required()])
 
     submit = SubmitField('Submit')
