@@ -10,7 +10,7 @@ class UpdateProfile(FlaskForm):
 class FormBlog(FlaskForm):
     title = StringField('Blog Title', validators=[Required(), Length(1, 64)])
     author = StringField('Author : ', validators=[Required()])
-    category = RadioField('Blog Category', choices = [('businesspitch', 'Business Pitch'),  ('lyricspitch', ' Lyrics Pitch'), ('advertisementpitch', 'Advertisement Pitch'),('relationshippitch' , 'Relationship Pitch')], validators = [Required()])
+    
     content = TextAreaField('Blog Content', validators=[Required()])
     submit = SubmitField('Post')
 

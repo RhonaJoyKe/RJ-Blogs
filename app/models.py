@@ -16,6 +16,7 @@ class User(UserMixin, db.Model):
     password_hash = db.Column(db.String(255))
     bio = db.Column(db.String(255))
     profile_pic_path = db.Column(db.String())
+    blogs = db.relationship('Blogs', backref='author', lazy = 'dynamic')
      # save user
     def save_user(self):
         db.session.add(self)
@@ -42,7 +43,6 @@ class Blogs(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(255))
     content = db.Column(db.String(255))
-    author = db.Column(db.String(255))
     date_created=db.Column(db.DateTime, default=datetime.utcnow)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     comments = db.relationship('Comment', backref='blog', lazy = 'dynamic')

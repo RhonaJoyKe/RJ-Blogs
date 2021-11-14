@@ -40,7 +40,7 @@ def new_blog():
     if blog_form.validate_on_submit():
         title = blog_form.title.data
         content = blog_form.content.data
-        new_blog= Blogs(title=title, content=content)
+        new_blog= Blogs(title=title, content=content,user_id=current_user.id)
         new_blog.save_blogs()
         
         return redirect(url_for('main.index'))
@@ -48,32 +48,33 @@ def new_blog():
 
 @main.route('/blog/<blog_id>', methods=['GET', 'POST'])
 def blog(blog_id):
-    blog=Blogs.query.get_or_404(blog_id)
-    return render_template('blogt.html',title=blog.title,blog=blog)
+    blog=Blogs.query.filter_by(id=blog_id).first()
+    print(blog)
+    return render_template('blogt.html',blog=blog)
 
 # updating a blog
-@main.route('/blog/<blog_id>/update',)
+@main.route('/blog/<blog_id>/update',methods=['GET', 'POST'])
 @login_required
 def update_blog(blog_id):
-    blog=Blogs.query.get_or_404(blog_id)
-    if blog.author !=current_user:
-         abort(403)
+    blog=Blogs.query.filter_by(id=blog_id).first()
+    if blog.author.id !=current_user.id:
+        abort(403)
+
     form=FormBlog()
     if form.validate_on_submit():
         blog.title=form.title.data
         blog.content=form.content.data
         db.session.commit()
         flash('Your Post has been Updated','Success')
-        return redirect(url_for('blog',blog_id=blog.id) )
+        return redirect(url_for('.blog',blog_id=blog.id) )
     elif request.method=='GET':
         form.title.data=blog.title
         form.content.data=blog.content
     return render_template('blog.html', form = form,title='Update Post')
 
 
-
 @main.route('/user/<uname>/update/pic',methods= ['POST'])
-@login_required
+
 def update_pic(uname):
     user = User.query.filter_by(username = uname).first()
     if 'photo' in request.files:

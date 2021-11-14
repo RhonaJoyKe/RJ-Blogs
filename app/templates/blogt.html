@@ -1,17 +1,24 @@
 {% extends 'base.html'%}
+{% block content %}
 <div class="row">
     
     <div class="col-md-4 ">
       <div class="panel panel-default text-center ">
         <div class="panel-heading">
-          <h4 span style="font-weight: 900;"> <a href="{{url for('blog',blog_id = blog.id)}}" ></a>{{ blog.title}}</h4>
+          <h1>Hello World</h1>
+          <h4 span style="font-weight: 900;"> <a href="{{url_for('main.blog',blog_id = blog.id)}}" ></a>{{ blog.title}}</h4>
         </div>
         <div class="panel-body">
           <p>{{ blog.content }}</p>
           <p class="panel-text"><strong>Created on: <span class="badge rounded-pill bg-warning text-dark">{{
-                      blog.date_created.strftime("%m/%d/%Y)  }}</span></strong> <br>
+                      blog.date_created.strftime("%m/%d/%Y")}}</span></strong> <br>
                       <a href="{{ url_for('main.comments', blog_id = blog.id)}}"><i class="fa fa-comments"
                         aria-hidden="true"></i>comment</a>
+                        <a href="{{ url_for('main.update_blog', blog_id = blog.id)}}"><i class="fa fa-comments"
+                          aria-hidden="true"></i>Edit</a>
+                          <a href="{{ url_for('main.update_blog', blog_id = blog.id)}}"><i class="fa fa-comments"
+                            aria-hidden="true"></i>Delete</a>
+
           </p>
 
         </div>
@@ -20,3 +27,4 @@
 
 
   </div>
+  {% endblock %}
