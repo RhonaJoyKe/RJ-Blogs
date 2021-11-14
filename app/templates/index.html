@@ -16,19 +16,20 @@
       <div class="col-md-2"></div>
     </div>
     </div>
-<div class="container" class ="arsub">
+<div class="container" class ="">
   <div class="row">
     
     {% for blog in blogs %}
     <div class="col-md-4 ">
-      <div class="panel panel-default text-center ">
+      <div class="panel panel-default text-center " id ="arsub">
         <div class="panel-heading">
           <h4 span style="font-weight: 900;"> <a href="{{url_for('main.blog',blog_id = blog.id)}}" >{{ blog.title}}</a></h4>
         </div>
         <div class="panel-body">
           <p>{{ blog.content }}</p>
+          <p><b>{{ blog.author }}</b></p>
           <p class="panel-text"><strong>Created on: <span class="badge rounded-pill bg-warning text-dark">
-            {{blog.date_created }}</span></strong> <br>
+            {{ blog.date_created.strftime("%m/%d/%Y")}}</span></strong> <br>
             <a href="{{ url_for('main.comments', blog_id = blog.id)}}"><i class="fa fa-comments"
               aria-hidden="true"></i>comment</a>
           </p>

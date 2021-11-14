@@ -19,37 +19,26 @@
   
   <div  class="container">
     <div class="row">
-      <div class="col-md-3"></div>
-      <div class="col-md-6">
-        <div class="card w-50 m-1 p-2"  id= "comments">
-          {{wtf.quick_form(form)}}
-        </div>
+      <div class="col-md-4" id ="comments1">
+        {{wtf.quick_form(form)}}
       </div>
-      <div class="col-md-3"></div>
-     
-
-    </div>
-    <div class="row">
-      <div class="col-md-3">
-      <div class="card w-20 m-1 p-2"  id ="comments1"> 
-      {% for comment in comment %}
-       
-          <p>Comment:<strong>{{ comment.content }}</strong></p>
-          <p>Date Posted :<strong>{{ comment.date_created }}</strong></p>
-          <a href="{{ url_for('main.delete_comment', comment_id = comment.id)}}"><i class="fa fa-comments"
-            aria-hidden="true"></i>Delete Comment</a>
-        </div>
-      </div>
-      {% endfor %}
-    </div>
-   
-   
-    
-    
-  </div>
   
- </body>
- <div class="container  mt-3" id ="footer">
+      {% for comment in comment %}
+      <div class="col-md-4">
+        
+          <div class="card w-20 m-1 p-2"  id ="comments1"> 
+          
+           
+              <p>Comment:<strong>{{ comment.content }}</strong></p>
+              <p>Date Posted :<strong>{{ comment.date_created.strftime("%m/%d/%Y")}}</strong></p>
+              <a href="{{ url_for('main.delete_comment', comment_id = comment.id)}}"><i class="far fa-trash-alt"></i>Delete Comment</a>
+            </div>
+          </div>
+          {% endfor %}
+      
+    </div>
+</div>
+  <div class="container  mt-3" id ="footer">
   <div class="container text-center" id="socials">
       <p><b>rhonajoy8@gmail.com</b></p>
       <p><b>&copy; 2021</b></p>

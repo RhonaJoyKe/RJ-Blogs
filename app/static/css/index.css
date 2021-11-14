@@ -5,6 +5,9 @@
     background-repeat: no-repeat;
     background-position: center;
 }
+#arsub{
+    box-shadow: 2px 2px 2px 1px grey; 
+}
 #display1{
     background-color:#9896f1 ;
 }
@@ -27,7 +30,19 @@ color:black;
 input[type=submit]{
  float: center;
 }
-    
+#comments1{
+    box-shadow: 2px 2px 2px 1px grey;
+}
+.panel-text a{
+    text-decoration: none;
+}
+   
+#blogt2{
+    margin-top: 10px;
+    box-shadow: 2px 2px 2px 1px grey; 
+
+}
+
 .btn-default,
 .btn-default:hover {
   background-color: #000000;
