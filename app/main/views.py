@@ -36,15 +36,15 @@ def update_profile(uname):
 @main.route('/createblog', methods=['GET', 'POST'])
 @login_required
 def new_blog():
-    blog_form = FormBlog()
-    if blog_form.validate_on_submit():
-        title = blog_form.title.data
-        content = blog_form.content.data
+    form = FormBlog()
+    if form.validate_on_submit():
+        title = form.title.data
+        content = form.content.data
         new_blog= Blogs(title=title, content=content,user_id=current_user.id)
         new_blog.save_blogs()
         
         return redirect(url_for('main.index'))
-    return render_template('blog.html', title='New Post',blog_form = blog_form)
+    return render_template('blog.html', title='New Post',form = form)
 
 @main.route('/blog/<blog_id>', methods=['GET', 'POST'])
 def blog(blog_id):
@@ -72,6 +72,15 @@ def update_blog(blog_id):
         form.content.data=blog.content
     return render_template('blog.html', form = form,title='Update Post')
 
+@main.route('/blog/<blog_id>/delete',methods=['GET', 'POST'])
+@login_required
+def delete_blog(blog_id):
+    blog=Blogs.query.filter_by(id=blog_id).first()
+    if blog.author.id !=current_user.id:
+        abort(403)
+    db.session.delete(blog)
+    db.session.commit()
+    return redirect(url_for('main.index'))
 
 @main.route('/user/<uname>/update/pic',methods= ['POST'])
 
@@ -102,3 +111,10 @@ def comments(blog_id):
             form.content.data = ''
             flash('Your comment has been posted successfully!')
     return render_template('comments.html',blogs= blog, comment=comments, form = form)
+@main.route('/comment/<comment_id>', methods=['POST','GET'])
+def delete_comment(comment_id):
+    comment = Comment.query.filter_by(id = comment_id).first()
+    blog_id = comment.blog_id
+    db.session.delete(comment)
+    db.session.commit()
+    return redirect(url_for('.blog',blog_id = blog_id))
