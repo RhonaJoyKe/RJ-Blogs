@@ -5,8 +5,17 @@
     background-position: center;
 }
 .navbar{
-    background-color: darkmagenta;
+    background-color: #d59bf6;
+}
+.navbar-brand{
+font-weight: 900;
+color: #8ef6e4;
 }
 .navbar li a {
     text-decoration: none;
+    color: #8ef6e4;
+
+}
+#footer{
+    background-color:#d59bf6; ;
 }
