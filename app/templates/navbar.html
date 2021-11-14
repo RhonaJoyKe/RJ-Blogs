@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg " id ="head">
     <div class="container container-fluid">
         <a class="navbar-brand" href="/">
-            Quick<span>Pitch</span>
+           RJ <span>Blogs</span>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -22,7 +22,7 @@
                <li><a href="{{url_for('main.profile',uname=current_user.username)}}">Profile</a>
               &nbsp;</li>
              <!-- <li style="color:white;padding:15px;">{{current_user.username}}</li> -->
-             <li><a href="/createblog" class="tag"> Pitch Here</a>&nbsp;</li>
+             <li><a href="/createblog" class="tag"> Blog Here</a>&nbsp;</li>
                 <li><a href="{{url_for('auth.logout')}}">Sign out</a>&nbsp;</li>
                 {% else %}
                 <li><i class="fa fa-user-circle-o-2x" aria-hidden="true"></i><a href="{{url_for('auth.login')}}"> Sign in</a></li>
