@@ -1,21 +1,46 @@
-.quotes{
+
+#quotes{
     background-image: url('../img/bg.jpeg');
-    background-size: cover;
+    background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
+}
+#display1{
+    background-color:#9896f1 ;
 }
 .navbar{
     background-color: #d59bf6;
 }
 .navbar-brand{
 font-weight: 900;
-color: #8ef6e4;
+color:black;
 }
 .navbar li a {
     text-decoration: none;
-    color: #8ef6e4;
+    color: black;
 
 }
+.panel-text a {
+    text-decoration: none;
+
+}
+input[type=submit]{
+ float: center;
+}
+    
+.btn-default,
+.btn-default:hover {
+  background-color: #000000;
+  border-color: #000000;
+  color: white;
+  margin-top: 10px;
+}
+#form{
+    border-radius: 10px;
+    background-color:#9896f1 ;
+    margin-bottom: 10px;
+}
 #footer{
+    margin-top: 10px;
     background-color:#d59bf6; ;
 }

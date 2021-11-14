@@ -3,26 +3,22 @@
 
 
 {% block content %}
-<section class="quotes">
+<div class="container" id="quotes">
   <h3 id="head"> Top Quotes</h3>
-  <div class="container">
-    <div class="row">
+      <div class="row">
       <div class="col-md-2"></div>
-
       <div class="col-md-8">
-        {{ quote.quote}}
-        {{ quote.author}}
-        </h4>
+        <p style="font-weight: 600;"> <strong>{{ quote.quote}}</strong> </p>
+        <p style="font-weight: 400;"> <strong>{{ quote.author}}</strong> </p>
+        
+      </h4>
       </div>
       <div class="col-md-2"></div>
-
-      
-      </div>
-      </div>
-</section>
-
-  
+    </div>
+    </div>
+<div class="container" class ="arsub">
   <div class="row">
+    
     {% for blog in blogs %}
     <div class="col-md-4 ">
       <div class="panel panel-default text-center ">
@@ -41,16 +37,37 @@
       </div>
     </div>
     {% endfor %}
-
   </div>
-  
-  <div class="container mt-5" id="footer">
-    <div class="container text-center" id="socials">
-      <p><b>rhonajoy8@gmail.com</b></p>
-      <p><b>&copy; 2021</b></p>
-      <p><b>Made with<span class="fa fa-heart" style="color: red;" aria-hidden="true"></span></b></p>
-    </div>
+  <div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+      
 
+    </div>
+   <div class="col-md-4" id="form">
+    <p> <b>------ SUBCRIBE TO BLOG VIA EMAIL-----</b></p>
+    <form>
+      <div class="mb-3">
+      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"><br>
+      <button type="submit" class="btn btn-primary">Subscribe</button>
+      <div>
+    </form>
+   </div>
+  </div>
+</div>
+  
+  
+  <div class="container " id="footer">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="container text-center" id="socials">
+          <p><b>rhonajoy8@gmail.com</b></p>
+          <p><b>&copy; 2021</b></p>
+          <p><b>Made with<span class="fa fa-heart" style="color: red;" aria-hidden="true"></span></b></p>
+        </div>
+      </div>
+    
+  </div>
   </div>
 
   {% endblock %}
