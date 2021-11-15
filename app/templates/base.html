@@ -12,7 +12,7 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="{{ url_for('static',filename='css/index.css')}}">
     <link rel="stylesheet" href="{{ url_for('static',filename='img/bg.jpeg')}}">
-  
+    {{mde.css}}
     <title>Document</title>
 </head>
 <body>
@@ -24,7 +24,7 @@
 
 {% endblock %}
     
- 
+{{mde.js}}
 </body>
 
 </html>

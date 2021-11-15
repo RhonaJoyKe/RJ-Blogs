@@ -3,6 +3,7 @@ from wtforms import StringField, PasswordField, BooleanField, SubmitField,RadioF
 from wtforms.fields.simple import TextAreaField
 from wtforms.validators import Required, Length, EqualTo
 from ..models import User,Blogs,Comment
+from flask_mde import Mde, MdeField
 
 class UpdateProfile(FlaskForm):
     bio = TextAreaField('Tell us about you.',validators = [Required()])
@@ -10,7 +11,7 @@ class UpdateProfile(FlaskForm):
 class FormBlog(FlaskForm):
     title = StringField('Blog Title', validators=[Required(), Length(1, 64)])
     author = StringField('Author : ',)
-    content =TextAreaField('Blog Content', validators=[Required()])
+    content = MdeField()
     submit = SubmitField('Post')
 
 class CommentForm(FlaskForm):
