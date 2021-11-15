@@ -11,6 +11,7 @@ class UpdateProfile(FlaskForm):
 class FormBlog(FlaskForm):
     title = StringField('Blog Title', validators=[Required(), Length(1, 64)])
     author = StringField('Author : ',)
+    category = RadioField('Blog Category :', choices = [('Health & Fitness', 'Health & Fitness'),  ('Fashion', ' Fashion'), ('Life and Relationships', 'Life and Relationships'),('Faith' , 'Faith')], validators = [Required()])
     content = MdeField()
     submit = SubmitField('Post')
 

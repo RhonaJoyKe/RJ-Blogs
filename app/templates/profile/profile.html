@@ -15,10 +15,9 @@
    
     </div>
 </div>
-<div class="profile d-flex flex-row w-75 m-auto shadow p-3 mt-5 bg-body rounded">
-    <div class="row">
-    <div class="col-md-6">
-  <div class="profile-info  ">
+<div class="profiled-flex justify-content-between w-75 m-auto shadow p-3 mt-5 bg-body rounded">
+    
+  <div class="profile-info w-50 d-flex flex-column align-items-center  ">
      <h2> {{user.username| capitalize}} </h2>
      {% if user.profile_pic_path%}
           <img src="{{url_for('static',filename=user.profile_pic_path)}}" alt="profile pic" class="img-thumbnail">
@@ -29,10 +28,7 @@
          <input type="submit">
      </form>
      {% endif%}
-    </div>
-    </div>
-    <div class="col-md-6">
-     {%if user.bio%}
+    {%if user.bio%}
          <div class="card w-50 m-1 p-2">
              {{user.bio}}
          </div>
@@ -49,7 +45,7 @@
   </div>
 
 </div>
-</div>
+
 <div class="container  mt-5" id ="footer">
     <div class="container text-center" id="socials">
         <p><b>rhonajoy8@gmail.com</b></p>

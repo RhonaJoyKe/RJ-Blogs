@@ -4,7 +4,7 @@ class Config:
 
     QUOTES_API_URL='http://quotes.stormconsultancy.co.uk/random.json'
     SECRET_KEY = os.environ.get('SECRET_KEY')
-    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://postgres:12345@localhost/rj_blog1'
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://postgres:12345@localhost/blog_rj'
     UPLOADED_PHOTOS_DEST ='app/static/photos'
     #  email configurations
     MAIL_SERVER = 'smtp.googlemail.com'
@@ -19,14 +19,14 @@ class Config:
     def init_app(app):
         pass
 class TestConfig(Config):
-    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://postgres:12345@localhost/rj_blog1'
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://postgres:12345@localhost/blog_rj'
 class ProdConfig(Config):
     SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL","")
   
 
 
 class DevConfig(Config):
-    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://postgres:12345@localhost/rj_blog1'
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://postgres:12345@localhost/blog_rj'
     DEBUG = True
 
 config_options = {

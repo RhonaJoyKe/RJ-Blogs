@@ -42,7 +42,7 @@ def new_blog():
         content = form.content.data
         new_blog= Blogs(title=title, content=content,user_id=current_user.id)
         new_blog.save_blogs()
-        
+        flash('Your blog has been Created','Success')
         return redirect(url_for('main.index'))
     return render_template('blog.html', title='New Post',form = form)
 
@@ -65,11 +65,12 @@ def update_blog(blog_id):
         blog.title=form.title.data
         blog.content=form.content.data
         db.session.commit()
-        flash('Your Post has been Updated','Success')
+        flash('Your Blog has been Updated','Success')
         return redirect(url_for('.blog',blog_id=blog.id) )
     elif request.method=='GET':
         form.title.data=blog.title
         form.content.data=blog.content
+        
     return render_template('blog.html', form = form,title='Update Post')
 
 @main.route('/blog/<blog_id>/delete',methods=['GET', 'POST'])
@@ -80,6 +81,7 @@ def delete_blog(blog_id):
         abort(403)
     db.session.delete(blog)
     db.session.commit()
+    flash('Your blog has been deleted successfully!','success')
     return redirect(url_for('main.index'))
 
 @main.route('/user/<uname>/update/pic',methods= ['POST'])
@@ -109,7 +111,7 @@ def comments(blog_id):
             db.session.add(comment)
             db.session.commit()
             form.content.data = ''
-            flash('Your comment has been posted successfully!')
+            flash('Your comment has been posted successfully!','success')
     return render_template('comments.html',blogs= blog, comment=comments, form = form)
 @main.route('/comment/<comment_id>', methods=['POST','GET'])
 def delete_comment(comment_id):
@@ -117,4 +119,5 @@ def delete_comment(comment_id):
     blog_id = comment.blog_id
     db.session.delete(comment)
     db.session.commit()
+    flash('Your comment has been deleted successfully!','success')
     return redirect(url_for('.blog',blog_id = blog_id))
