@@ -62,7 +62,7 @@ The following languages have been used on this project:
 
 ## Setup/Installation Requirements
 
-- Live link to view the project <a target="_blank" href="">View Blogs</a>
+- Live link to view the project <a target="_blank" href="https://rjblogs.herokuapp.com/">View Blogs</a>
 
 
 ## Known Bugs
