@@ -1,14 +1,19 @@
 
 #quotes{
     background-image: url('../img/bg.jpeg');
-    background-size: contain;
+    background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
+    background-color: transparent;
 }
 #arsub{
     box-shadow: 2px 2px 2px 1px grey; 
 }
-
+.sub{
+    margin-top: 100px;
+    box-shadow: 2px 2px 2px 1px darkorange; 
+    padding: 10px;  
+}
 #display1{
     background-color:#9896f1 ;
 }
@@ -26,8 +31,11 @@ color:black;
 }
 .panel-text a {
     text-decoration: none;
-
 }
+.panel-heading a {
+    text-decoration: none;
+}
+
 input[type=submit]{
  float: center;
 }
@@ -42,6 +50,9 @@ input[type=submit]{
     margin-top: 10px;
     box-shadow: 2px 2px 2px 1px grey; 
 
+}
+button[type=submit]{
+    margin-left: 40%;
 }
 
 .btn-default,

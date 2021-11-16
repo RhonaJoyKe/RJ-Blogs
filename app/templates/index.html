@@ -26,14 +26,16 @@
       </div>
       {% endfor %}
     </div>
-    
-  <div class="col-md-6" id=>
+   
+  <div class="col-md-6" id="quotes">
     <h3 id="head"> Top Quotes</h3>
-    <p style="font-weight: 600;"> <strong>{{ quote.quote}}</strong> </p>
+    <p style="font-weight: 600;"> <i>{{ quote.quote}}</i> </p>
         <p style="font-weight: 400;"> <strong>{{ quote.author}}</strong> </p>
-        <p> <b>------ SUBCRIBE TO BLOG VIA EMAIL-----</b></p>
+        <div class="sub">
+        <p style="color: darkorange;"> <b>------ SUBCRIBE TO BLOG VIA EMAIL-----</b></p>
+        
         <form>
-          <div class="mb-3">
+         
           <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"><br>
           <button type="submit" class="btn btn-primary">Subscribe</button>
           <div>
